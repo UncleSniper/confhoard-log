@@ -23,18 +23,21 @@ public class LoggingConfStateListener extends AbstractLoggingListener implements
 		super(logger);
 	}
 
+	@Override
 	public void slotUpdateSucceeded(SlotUpdateSucceededStateEvent event) {
 		getEffectiveLogger(event::getRequestParameter).log(DefaultLogLevel.INFO,
 				LoggingConfStateListener.SLOT_UPDATE_SUCCEEDED_SOURCE,
 				(LogMessage)new SlotUpdateSucceededConfStateLogMessage(event));
 	}
 
+	@Override
 	public void slotUpdateFailed(SlotUpdateFailedStateEvent event) {
 		getEffectiveLogger(event::getRequestParameter).log(DefaultLogLevel.ERROR,
 				LoggingConfStateListener.SLOT_UPDATE_FAILED_SOURCE,
 				(LogMessage)new SlotUpdateFailedConfStateLogMessage(event));
 	}
 
+	@Override
 	public void confStateListenerFailed(ConfStateListenerFailedStateEvent event) {
 		getEffectiveLogger(event::getRequestParameter).log(DefaultLogLevel.ERROR,
 				LoggingConfStateListener.CONFSTATE_LISTENER_FAILED_SOURCE,
