@@ -22,12 +22,13 @@ public class SlotLoadedStorageLogMessage extends StringLogMessage {
 			throw new IllegalArgumentException("Event cannot be null");
 		StringBuilder builder = new StringBuilder();
 		Slot slot = event.getSlot();
+		boolean active = slot.getFragment() != null;
 		builder.append("Loaded slot '");
 		builder.append(slot.getKey());
 		builder.append("' from storage (");
-		builder.append(String.valueOf(event.getFragmentCount()));
+		builder.append(String.valueOf(event.getFragmentCount() - (active ? 0 : 1)));
 		builder.append(" fragments, ");
-		builder.append(slot.getFragment() == null ? "none" : "one");
+		builder.append(active ? "one" : "none");
 		builder.append(" active)");
 		return builder.toString();
 	}
